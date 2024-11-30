@@ -7,7 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:2024IDPwD": "node dist/2024-idpw-d/server/server.mjs"
+    "serve:ssr:2024IDPwD": "node dist/2024-idpw-d/server/server.mjs",
+    "clean:git-credential": "git credential-cache exit",
+    "git:check-remote": "git remote -v",
+    "git:check-remote-connection": "git ls-remote https://github.com/Amory0709/2024IDPwD.git"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +24,7 @@
     "@angular/platform-server": "^19.0.0",
     "@angular/router": "^19.0.0",
     "@angular/ssr": "^19.0.2",
+    "angular-cli-ghpages": "^2.0.3",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
