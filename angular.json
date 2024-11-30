@@ -102,7 +102,12 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/2024IDPwD/",
+            "name": "GoldenFingerMY",
+            "email": "seahan0709@icloud.coms"
+          }
         }
       }
     }
