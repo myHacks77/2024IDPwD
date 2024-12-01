@@ -4,6 +4,7 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 100;
+  padding: 10px;
 
   ul {
     list-style: none;
@@ -66,32 +67,43 @@
       }
     }
 
-    .number {
-      display: none;
-    }
-
     .text {
       font-size: 14px;
-      color: rgba(0, 0, 0, 0);
+      color: rgba(0, 0, 0, 0.7);
       text-transform: uppercase;
       letter-spacing: 1px;
       transition: all 0.3s ease;
       white-space: nowrap;
       opacity: 0;
+      visibility: hidden;
+      transform: translateX(-20px);
+      position: absolute;
+      left: 45px;
     }
 
-    &:hover, &.active {
-      .diamond {
-        border-color: #8A2BE2;
-        background: transparent;
+    &.active .diamond {
+      border-color: #8A2BE2;
+      background: transparent;
 
-        &:after {
-          background: #8A2BE2;
-        }
+      &:after {
+        background: #8A2BE2;
       }
-      .text {
-        color: rgba(0, 0, 0, 0.7);
-        opacity: 1;
+    }
+  }
+
+  &:hover {
+    li .text {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+
+    li:hover .diamond {
+      border-color: #8A2BE2;
+      background: transparent;
+
+      &:after {
+        background: #8A2BE2;
       }
     }
   }
