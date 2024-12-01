@@ -70,7 +70,6 @@
     .text {
       font-size: 14px;
       color: rgba(0, 0, 0, 0.7);
-      text-transform: uppercase;
       letter-spacing: 1px;
       transition: all 0.3s ease;
       white-space: nowrap;
@@ -81,6 +80,20 @@
       left: 45px;
     }
 
+    .number {
+      position: absolute;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.7);
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 2;
+    }
+
+    &.active .text {
+      color: #8A2BE2;
+    }
+
     &.active .diamond {
       border-color: #8A2BE2;
       background: transparent;
@@ -88,6 +101,10 @@
       &:after {
         background: #8A2BE2;
       }
+    }
+
+    &.active .number {
+      color: #8A2BE2;
     }
   }
 
@@ -98,12 +115,19 @@
       transform: translateX(0);
     }
 
-    li:hover .diamond {
-      border-color: #8A2BE2;
-      background: transparent;
+    li:hover {
+      .diamond {
+        border-color: #8A2BE2;
+        background: transparent;
 
-      &:after {
-        background: #8A2BE2;
+        &:after {
+          background: transparent;
+          visibility: hidden;
+        }
+      }
+      .number {
+        opacity: 1;
+        visibility: visible;
       }
     }
   }
