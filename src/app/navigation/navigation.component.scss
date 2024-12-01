@@ -17,8 +17,8 @@
       left: 22px;
       top: -20px;
       bottom: -20px;
-      width: 1px;
-      background: rgba(0, 0, 0, 0.2);
+      width: 0;
+      border-left: 1px dashed rgba(0, 0, 0, 0.2);
       z-index: -1;
     }
   }
