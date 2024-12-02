@@ -1,0 +1,17 @@
+$blur: 10px;
+$opacity: 0.5;
+
+.welcome-container {
+    height: 50vh;
+    width: 50vw;
+    
+    background-color: hsla(0,0%,100%, $opacity);
+    backdrop-filter: blur($blur);
+    -webkit-backdrop-filter: blur($blur);
+    border: 0px solid rgba(255, 255, 255, 0.18);
+    box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+    -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+    border-radius: 18px;
+    -webkit-border-radius: 18px;
+    // color: rgba(255, 255, 255, 0.75);
+}
