@@ -51,10 +51,15 @@
   width: 100%;
 }
 
+// Variables for circle sizing
+$base-size: 40;  // Base percentage for smallest circle
+$size-increment: 20;  // Increment between each circle
+$num-circles: 7;  // Number of circles
+
 .dripping-circles {
   position: relative;
-  width: min(600px, 70vh, 70vw);
-  height: min(600px, 70vh, 70vw);
+  width: min(100vh, 100vw);
+  height: min(100vh, 100vw);
   
   .circle {
     position: absolute;
@@ -64,73 +69,27 @@
     left: 50%;
     transform: translate(-50%, -50%);
     
-    &:nth-child(1) { 
-      width: 100%; 
-      height: 100%;
-      animation: drip1 4s infinite;
-    }
-    &:nth-child(2) { 
-      width: 83%; 
-      height: 83%;
-      animation: drip2 4s infinite;
-    }
-    &:nth-child(3) { 
-      width: 66%; 
-      height: 66%;
-      animation: drip3 4s infinite;
-    }
-    &:nth-child(4) { 
-      width: 50%; 
-      height: 50%;
-      animation: drip4 4s infinite;
-    }
-    &:nth-child(5) { 
-      width: 33%; 
-      height: 33%;
-      animation: drip5 4s infinite;
-    }
-    &:nth-child(6) { 
-      width: 16%; 
-      height: 16%;
-      animation: drip6 4s infinite;
+    @for $i from 1 through $num-circles {
+      $size: $base-size + ($size-increment * ($num-circles - $i + 1));
+      
+      &:nth-child(#{$i}) {
+        width: #{$size + '%'};
+        height: #{$size + '%'};
+        animation: drip#{$i} 4s infinite;
+      }
     }
   }
 }
 
-@keyframes drip1 {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.1); }
-  100% { transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes drip2 {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.15); }
-  100% { transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes drip3 {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.2); }
-  100% { transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes drip4 {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.25); }
-  100% { transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes drip5 {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.3); }
-  100% { transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes drip6 {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.35); }
-  100% { transform: translate(-50%, -50%) scale(1); }
+// Generate animations
+@for $i from 1 through $num-circles {
+  $scale: 1 + .2;  // Incremental scale factor
+  
+  @keyframes drip#{$i} {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(#{$scale}); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+  }
 }
 
 .footer-text {
@@ -180,4 +139,16 @@
     font-size: 0.9rem;
     padding: 0.8rem;
   }
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 90vw;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

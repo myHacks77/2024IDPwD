@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { NavigationComponent } from './navigation/navigation.component';
 
 @Component({
@@ -8,10 +9,18 @@ import { NavigationComponent } from './navigation/navigation.component';
   styleUrls: ['./app.component.scss'],
   imports: [
     CommonModule,
-    NavigationComponent
+    RouterModule,
+    NavigationComponent,
   ],
   standalone: true
 })
 export class AppComponent {
-  // Add any component logic here if needed
+  isTransitioning = false;
+
+  triggerTransition() {
+    this.isTransitioning = true;
+    setTimeout(() => {
+      this.isTransitioning = false;
+    }, 1500);
+  }
 }

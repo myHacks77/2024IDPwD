@@ -10,16 +10,20 @@
   <div class="header">
     <h1>International Day of Persons with Disabilities</h1>
     <div class="hashtags">
-      <span>#WeAreInclusive</span>
-      <span>#WeAreSlb</span>
+      <p>#WeAreInclusive</p>
+      <p>#WeAreSlb</p>
     </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <router-outlet></router-outlet>
   </div>
 
   <!-- Dripping Circles Animation -->
   <div class="circles-container">
     <div class="dripping-circles">
-      <!-- Multiple circles with different animations -->
-      <div class="circle" *ngFor="let i of [1,2,3,4,5,6]"></div>
+      <div class="circle" *ngFor="let i of [1,2,3,4,5,6,7]"></div>
     </div>
   </div>
 

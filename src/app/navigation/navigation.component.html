@@ -2,6 +2,7 @@
   <ul>
     <li *ngFor="let item of navItems; let i = index" 
         [class.active]="item.isActive"
+        [routerLink]="item.route"
         (click)="setActive(i)"
     >
       <div class="nav-item">
