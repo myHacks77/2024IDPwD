@@ -1,4 +1,5 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-welcome',
@@ -9,27 +10,41 @@ export class WelcomeComponent implements OnInit {
   private multiple = 25;
   private element: HTMLElement | undefined;
 
-  constructor(private el: ElementRef) {}
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit() {
-    this.element = this.el.nativeElement.querySelector('.welcome-container');
-    document.addEventListener('mousemove', (e) => {
-      window.requestAnimationFrame(() => {
-        this.transformElement(e.clientX, e.clientY);
+    if (isPlatformBrowser(this.platformId)) {
+      this.element = this.el.nativeElement.querySelector('.welcome-container');
+      
+      this.renderer.listen('document', 'mousemove', (e: MouseEvent) => {
+        window.requestAnimationFrame(() => {
+          this.transformElement(e.clientX, e.clientY);
+        });
       });
-    });
-    document.addEventListener('mouseleave', () => {
-      if (this.element) {
-        this.element.style.transform = "rotateX(0) rotateY(0)";
-      }
-    });
+
+      this.renderer.listen('document', 'mouseleave', () => {
+        if (this.element) {
+          this.renderer.setStyle(this.element, 'transform', 'rotateX(0) rotateY(0)');
+        }
+      });
+    }
   }
+
   private transformElement(x: number, y: number) {
     if (!this.element) return;
+    
     const box = this.element.getBoundingClientRect();
     const calcX = -(y - box.y - (box.height / 2)) / this.multiple;
     const calcY = (x - box.x - (box.width / 2)) / this.multiple;
     
-    this.element.style.transform = `rotateX(${calcX}deg) rotateY(${calcY}deg)`;
+    this.renderer.setStyle(
+      this.element, 
+      'transform', 
+      `rotateX(${calcX}deg) rotateY(${calcY}deg)`
+    );
   }
 }
