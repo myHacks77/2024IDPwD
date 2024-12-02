@@ -1,19 +1,27 @@
 import { Component, OnInit, ElementRef, Renderer2, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
-  styleUrls: ['./welcome.component.scss']
+  styleUrls: ['./welcome.component.scss'],
+  imports: [
+    FormsModule,
+  ],
+  standalone: true
 })
 export class WelcomeComponent implements OnInit {
+  name: string | undefined;
   private multiple = 25;
   private element: HTMLElement | undefined;
 
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -32,6 +40,10 @@ export class WelcomeComponent implements OnInit {
         }
       });
     }
+  }
+
+  enterGame() {
+    this.router.navigate(['/hello-friend']);
   }
 
   private transformElement(x: number, y: number) {

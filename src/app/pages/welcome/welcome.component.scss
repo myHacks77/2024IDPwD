@@ -77,5 +77,10 @@ $size: min(80vw, 80vh);
         &:hover {
             background: rgba(128, 0, 255, 0.9);
         }
+
+        &.disabled {
+            background: rgba(128, 0, 255, 0.5);
+            cursor: not-allowed;
+        }
     }
 }

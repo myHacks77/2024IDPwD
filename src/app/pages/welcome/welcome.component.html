@@ -1,7 +1,7 @@
 <div class="welcome-container">
     <h1>Welcome</h1>
 
-    <p>Welcome to join the 2024 IDPwD event. Please enter your name to continue</p>
-    <input type="text" placeholder="Name">
-    <button>Continue</button>
+    <p>Welcome to join the 2024 IDPwD event. Please enter your name to continue.</p>
+    <input type="text" placeholder="Name" [(ngModel)]="name">
+    <button (click)="enterGame()" [disabled]="!name?.length" [class.disabled]="!name?.length">Continue</button>
 </div>
