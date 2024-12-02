@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'SLB Sans'; /* Replace with your desired font family name */
+    src: url('assets/SLBSans-Regular.otf') format('opentype'); /* Update with your actual font file name */
+    font-weight: normal; /* Adjust as necessary */
+    font-style: normal; /* Adjust as necessary */
+  }
+  
+  /* Apply the font to the entire application */
+  body {
+    font-family: 'SLB Sans', sans-serif; /* Fallback to sans-serif */
+  }
