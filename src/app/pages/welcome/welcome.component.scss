@@ -9,9 +9,9 @@ $size: min(80vw, 80vh);
     background-color: hsla(0,0%,100%, $opacity);
     backdrop-filter: blur($blur);
     -webkit-backdrop-filter: blur($blur);
-    border: 0px solid rgba(255, 255, 255, 0.18);
-    box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-    -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: rgba(142, 142, 142, 0.19) 6px 6px 15px 6px;
+    -webkit-box-shadow: rgba(142, 142, 142, 0.19) 6px 6px 15px 6px;
     border-radius: min(50vw, 50vh);
     -webkit-border-radius: min(50vw, 50vh);
     
