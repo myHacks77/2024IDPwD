@@ -12,4 +12,5 @@ export const routes: Routes = [
   { path: 'thank-you', component: ThankYouComponent },
   { path: 'come-together', component: ComeTogetherComponent },
   { path: 'leaderboard', component: LeaderboardComponent },
+  { path: '**', redirectTo: 'welcome' }
 ];
