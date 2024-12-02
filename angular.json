@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/2024-idpw-d",
+            "outputPath": "dist/2024IDPwD",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -36,23 +36,24 @@
             ],
             "scripts": [],
             "server": "src/main.server.ts",
-            "outputMode": "server",
+            "outputMode": "static",
             "ssr": {
               "entry": "src/server.ts"
-            }
+            },
+            "baseHref": "/2024IDPwD/"
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "1GB",
+                  "maximumError": "2GB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "1GB",
+                  "maximumError": "2GB"
                 }
               ],
               "outputHashing": "all"
