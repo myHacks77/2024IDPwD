@@ -20,10 +20,10 @@ export class NavigationComponent {
 
     navItems: NavItem[] = [
         { number: 1, text: 'Welcome', route: '/welcome'},
-        { number: 2, text: 'Hello, Friend', route: '/hello-friend' },
-        { number: 3, text: 'Thank you', route: '/thank-you'},
-        { number: 4, text: 'Come on, Together', route: '/come-together' },
+        { number: 2, text: '"Hello, Friend"', route: '/hello-friend' },
+        { number: 3, text: '"Thank you"', route: '/thank-you'},
+        { number: 4, text: '"Come on, Together"', route: '/come-together' },
         { number: 5, text: 'Leaderboard', route: '/leaderboard' }
     ];
-    
+
 } 
