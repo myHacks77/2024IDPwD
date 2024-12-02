@@ -15,12 +15,12 @@ import { NavigationComponent } from './navigation/navigation.component';
   standalone: true
 })
 export class AppComponent {
-  isTransitioning = false;
+  isAnimating = false;
 
-  triggerTransition() {
-    this.isTransitioning = true;
+  startAnimation() {
+    this.isAnimating = true;
     setTimeout(() => {
-      this.isTransitioning = false;
-    }, 1500);
+      this.isAnimating = false;
+    }, 2000);
   }
 }

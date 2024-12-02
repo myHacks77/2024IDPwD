@@ -75,15 +75,18 @@ $num-circles: 7;  // Number of circles
       &:nth-child(#{$i}) {
         width: #{$size + '%'};
         height: #{$size + '%'};
-        animation: drip#{$i} 4s infinite;
+        
+        &.animate {
+          animation: drip#{$i} 2s;
+        }
       }
     }
   }
 }
 
-// Generate animations
+// Generate animations (removed 'infinite')
 @for $i from 1 through $num-circles {
-  $scale: 1 + .2;  // Incremental scale factor
+  $scale: 1 + .2;
   
   @keyframes drip#{$i} {
     0% { transform: translate(-50%, -50%) scale(1); }

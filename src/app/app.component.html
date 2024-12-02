@@ -1,5 +1,5 @@
 <div class="container">
-  <app-navigation></app-navigation>
+  <app-navigation (navigationClicked)="startAnimation()"></app-navigation>
   
   <!-- Logo -->
   <div class="logo">
@@ -23,7 +23,10 @@
   <!-- Dripping Circles Animation -->
   <div class="circles-container">
     <div class="dripping-circles">
-      <div class="circle" *ngFor="let i of [1,2,3,4,5,6,7]"></div>
+      <div class="circle" 
+           *ngFor="let i of [1,2,3,4,5,6,7]"
+           [class.animate]="isAnimating">
+      </div>
     </div>
   </div>
 

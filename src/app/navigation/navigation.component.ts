@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -17,6 +17,8 @@ interface NavItem {
   imports: [CommonModule, RouterModule]
 })
 export class NavigationComponent {
+  @Output() navigationClicked = new EventEmitter<void>();
+
   navItems: NavItem[] = [
     { number: 1, text: 'Welcome', route: '/welcome', isActive: false },
     { number: 2, text: 'Hello, Friend', route: '/hello-friend', isActive: false },
@@ -29,5 +31,6 @@ export class NavigationComponent {
     this.navItems.forEach((item, i) => {
       item.isActive = i === index;
     });
+    this.navigationClicked.emit();
   }
 } 
