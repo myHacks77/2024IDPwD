@@ -50,8 +50,14 @@ export class WelcomeComponent implements OnInit {
     if (!this.element) return;
     
     const box = this.element.getBoundingClientRect();
-    const calcX = -(y - box.y - (box.height / 2)) / this.multiple;
-    const calcY = (x - box.x - (box.width / 2)) / this.multiple;
+    let calcX = -(y - box.y - (box.height / 2)) / this.multiple;
+    let calcY = (x - box.x - (box.width / 2)) / this.multiple;
+   
+    calcX = calcX > 10 ? 10 : calcX;
+    calcY = calcY > 10 ? 10 : calcY;
+
+    calcX = calcX < -10 ? -10 : calcX;
+    calcY = calcY < -10 ? -10 : calcY;
     
     this.renderer.setStyle(
       this.element, 
