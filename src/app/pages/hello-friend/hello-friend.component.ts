@@ -10,5 +10,7 @@ import { HandGesturesComponent } from '../../shared/hand-gestures/hand-gestures.
   styleUrl: './hello-friend.component.scss'
 })
 export class HelloFriendComponent {
-
+  startGame() {
+    // this.handGestures.nativeElement.style.display = 'block';
+  }
 }
