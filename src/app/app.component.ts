@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { NavigationComponent } from './navigation/navigation.component';
 
 @Component({
@@ -16,6 +16,14 @@ import { NavigationComponent } from './navigation/navigation.component';
 })
 export class AppComponent {
   isAnimating = false;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.startAnimation();
+      }
+    });
+  }
 
   startAnimation() {
     this.isAnimating = true;
