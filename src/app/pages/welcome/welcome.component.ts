@@ -26,7 +26,7 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.element = this.el.nativeElement.querySelector('.welcome-container');
+      this.element = this.el.nativeElement.querySelector('.glass-container');
       
       this.renderer.listen('document', 'mousemove', (e: MouseEvent) => {
         window.requestAnimationFrame(() => {
@@ -58,7 +58,7 @@ export class WelcomeComponent implements OnInit {
 
     calcX = calcX < -10 ? -10 : calcX;
     calcY = calcY < -10 ? -10 : calcY;
-    
+
     this.renderer.setStyle(
       this.element, 
       'transform', 
