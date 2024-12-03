@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild, Output, EventEmitter } from '@angular/core';
 import { HandposeService } from './handpose.service';
 import { BehaviorSubject, fromEvent, interval, map, Observable, skip, Subscription, switchMap, tap } from 'rxjs';
 import { IdentifitedHand, PredefinedHandposes } from './handpose.types';
@@ -7,7 +7,12 @@ import { Hand } from '@tensorflow-models/hand-pose-detection';
 import { HandLandmarkerResult } from '@mediapipe/tasks-vision';
 import { maxBy as _maxBy } from 'lodash';
 import { GestureEstimator } from 'fingerpose';
-
+import { POINT_TO_OTHER_GESTURE } from './gestures/point-to-other';
+import { THUMB_UP_GESTURE } from './gestures/thumb-up';
+import { HALF_THUMB_UP_GESTURE } from './gestures/half-thumb-up';
+import { TWO_FINGER_GESTURE } from './gestures/two-fingers';
+import { POINT_DIAGONAL_UP_GESTURE } from './gestures/point-diagonal-up';
+import { POINT_DIAGONAL_DOWN_GESTURE } from './gestures/point-diagonal-down';
 @Component({
   selector: 'app-hand-gestures',
   imports: [],
@@ -27,9 +32,11 @@ export class HandGesturesComponent implements OnInit, AfterViewInit, OnDestroy, 
   gestureEstimator!: GestureEstimator;
 
   handposes$$: BehaviorSubject<IdentifitedHand[]> = new BehaviorSubject<IdentifitedHand[]>([]);
-  handpose$!: Observable<IdentifitedHand[]>;
+  handpose$: Observable<IdentifitedHand[]> = this.handposes$$.asObservable();
 
   private videoStream$!: Subscription;
+
+  @Output() gestureDetected = new EventEmitter<PredefinedHandposes>();
 
   constructor(private handposeService: HandposeService) {
   }
@@ -38,6 +45,12 @@ export class HandGesturesComponent implements OnInit, AfterViewInit, OnDestroy, 
     this.gestureEstimator = new GestureEstimator([
       // PINCH_GESTURE,
       // HOVER_GESTURE,
+      POINT_TO_OTHER_GESTURE,
+      THUMB_UP_GESTURE,
+      HALF_THUMB_UP_GESTURE,
+      TWO_FINGER_GESTURE,
+      POINT_DIAGONAL_UP_GESTURE,
+      POINT_DIAGONAL_DOWN_GESTURE,
       // //STOP_GESTURE,
       // MOVE_GESTURE,
       // RAISED_HAND_GESTURE,
@@ -61,7 +74,7 @@ export class HandGesturesComponent implements OnInit, AfterViewInit, OnDestroy, 
   }
 
   ngAfterViewInit(): void {
-    this.processHandsNoise();
+    // this.processHandsNoise();
     this.initializeVideoStream();
   } 
 
@@ -129,11 +142,6 @@ export class HandGesturesComponent implements OnInit, AfterViewInit, OnDestroy, 
             .pipe(
               switchMap(() => interval(100)),
               tap(() => {
-                // this.handposeService
-                //   .detect(this.video.nativeElement)
-                //   .then((hands) => this.handleResults(hands))
-                //   .catch((err) => console.error('Error for video stream'));
-
                 this.handposeService
                   .detectV2(this.video.nativeElement)
                   .then((handResult) => {
@@ -170,6 +178,7 @@ export class HandGesturesComponent implements OnInit, AfterViewInit, OnDestroy, 
       if (!handpose) return;
       identifiedHands.push({ handpose, ...hand });
     }
+
     this.handposes$$.next(identifiedHands);
   }
 
@@ -179,7 +188,7 @@ export class HandGesturesComponent implements OnInit, AfterViewInit, OnDestroy, 
     const hands = HandposeUtils.convertHandLandmarkResultToHand(results, this.width, this.height);
     this.drawHands(hands);
     const identifiedHands = this.estimateGestures(hands);
-    if (!identifiedHands) return;
+    if (!identifiedHands?.length) return;
     this.handposes$$.next(identifiedHands);
   }
 
@@ -223,7 +232,7 @@ export class HandGesturesComponent implements OnInit, AfterViewInit, OnDestroy, 
     if (gesture.gestures?.length) {
       const mostPossibleGesture = _maxBy(gesture.gestures, (gesture) => gesture?.score);
 
-      console.log('Gesture detected', mostPossibleGesture?.name);
+      console.log('Gesture detected', mostPossibleGesture?.name, mostPossibleGesture?.score);
 
       return mostPossibleGesture?.name as PredefinedHandposes;
     }
