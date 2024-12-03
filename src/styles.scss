@@ -1,25 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face {
-    font-family: 'SLB Sans'; /* Replace with your desired font family name */
-    src: url('assets/SLBSans-Regular.otf') format('opentype'); /* Update with your actual font file name */
-    font-weight: normal; /* Adjust as necessary */
-    font-style: normal; /* Adjust as necessary */
-  }
-  
-  /* Apply the font to the entire application */
-  body {
-    font-family: 'SLB Sans', sans-serif; /* Fallback to sans-serif */
-  }
+    font-family: 'SLB Sans';
+    /* Replace with your desired font family name */
+    src: url('assets/SLBSans-Regular.otf') format('opentype');
+    /* Update with your actual font file name */
+    font-weight: normal;
+    /* Adjust as necessary */
+    font-style: normal;
+    /* Adjust as necessary */
+}
 
-  $blur: 10px;
+/* Apply the font to the entire application */
+body {
+    font-family: 'SLB Sans', sans-serif;
+    /* Fallback to sans-serif */
+}
+
+$blur: 10px;
 $opacity: 0.2;
 $size: min(80vw, 80vh);
+
+.game-container {
+    height: $size;
+    width: $size;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+
+    border-radius: min(50vw, 50vh);
+    -webkit-border-radius: min(50vw, 50vh);
+}
+
+.hide {
+    visibility: hidden; 
+}
 
 .glass-container {
     height: $size;
     width: $size;
-    
-    background-color: hsla(0,0%,100%, $opacity);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+
+    background-color: hsla(0, 0%, 100%, $opacity);
     backdrop-filter: blur($blur);
     -webkit-backdrop-filter: blur($blur);
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -27,15 +58,10 @@ $size: min(80vw, 80vh);
     -webkit-box-shadow: rgba(142, 142, 142, 0.19) 6px 6px 15px 6px;
     border-radius: min(50vw, 50vh);
     -webkit-border-radius: min(50vw, 50vh);
-    
+
     transform-style: preserve-3d;
     transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
+    
 
     h1 {
         font-size: 3.5rem;
@@ -51,7 +77,8 @@ $size: min(80vw, 80vh);
         font-weight: 300;
     }
 
-    input, button {
+    input,
+    button {
         width: 100%;
         max-width: 15rem;
         padding: 1rem;
@@ -72,7 +99,7 @@ $size: min(80vw, 80vh);
         &[type="text"] {
             text-align: center;
             letter-spacing: 0.5px;
-            
+
             &:focus {
                 outline: none;
                 border-color: rgba(255, 255, 255, 0.5);
@@ -81,7 +108,7 @@ $size: min(80vw, 80vh);
     }
 
     button {
-        background:rgba(128, 0, 255);
+        background: rgba(128, 0, 255);
         border: none;
         cursor: pointer;
         font-weight: 500;

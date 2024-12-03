@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
-import { HandGesturesComponent } from '../../shared/hand-gestures/hand-gestures.component';
+import { CommonModule } from '@angular/common';
+import { SignLanguageGameComponent } from '../../shared/sign-language-game/sign-language-game.component';
 
 @Component({
   selector: 'app-hello-friend',
   imports: [
-    HandGesturesComponent
+    SignLanguageGameComponent,
+    CommonModule
   ],
   templateUrl: './hello-friend.component.html',
   styleUrl: './hello-friend.component.scss'
 })
 export class HelloFriendComponent {
+  isEntered = false;
+
   startGame() {
-    // this.handGestures.nativeElement.style.display = 'block';
+    this.isEntered = true;
   }
 }
