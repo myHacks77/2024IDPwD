@@ -28,7 +28,7 @@ export interface GameWord {
   templateUrl: './sign-language-game.component.html',
   styleUrl: './sign-language-game.component.scss'
 })
-export class SignLanguageGameComponent implements AfterViewInit, OnChanges {
+export class SignLanguageGameComponent implements AfterViewInit {
   @ViewChild(HandGesturesComponent) handGesturesComponent!: HandGesturesComponent;
   @Input() gameSetting!: GameSetting;
   progress: number = 0;
@@ -36,10 +36,6 @@ export class SignLanguageGameComponent implements AfterViewInit, OnChanges {
   // TODO: timer
 
   constructor(private router: Router) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-  }
 
   ngAfterViewInit(): void {
     this.handGesturesComponent?.handpose$?.pipe(
