@@ -23,9 +23,7 @@ export class ComeTogetherComponent {
       { gestures: [PredefinedHandposes.TwoFingers], word: 'Chi' },
       { gestures: [PredefinedHandposes.TwoFingers], word: 'Fan' },
       { gestures: [PredefinedHandposes.PointDiagonalUp], word: 'le' },
-      { gestures: [PredefinedHandposes.PointDiagonalDown], word: 'ma' },
-      { gestures: [PredefinedHandposes.PointDiagonalUp], word: 'le' },
-      { gestures: [PredefinedHandposes.PointDiagonalDown], word: 'ma' },  
+      { gestures: [PredefinedHandposes.PointDiagonalDown], word: 'ma' } 
     ]
   };
 
