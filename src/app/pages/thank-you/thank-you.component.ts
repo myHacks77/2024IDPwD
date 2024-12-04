@@ -1,16 +1,31 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { HandGesturesComponent } from '../../shared/hand-gestures/hand-gestures.component';
+import { PredefinedHandposes } from '../../shared/hand-gestures/handpose.types';
+import { GameSetting, SignLanguageGameComponent } from '../../shared/sign-language-game/sign-language-game.component';
 
 @Component({
   selector: 'app-thank-you',
   imports: [
-    HandGesturesComponent
+    SignLanguageGameComponent,
+    CommonModule
   ],
   templateUrl: './thank-you.component.html',
   styleUrl: './thank-you.component.scss'
 })
 export class ThankYouComponent {
+  isEntered = false;
+  gameSetting: GameSetting = {
+    levelTitle: 'Thank You',
+    nextStepLink: '/come-together',
+    requiredGestures: [
+      { gestures: [PredefinedHandposes.ThumbUp], word: 'Xie' },
+      { gestures: [PredefinedHandposes.ThumbUp], word: 'Xie' },
+      { gestures: [PredefinedHandposes.ThumbUp], word: 'Xie' },
+      { gestures: [PredefinedHandposes.ThumbUp], word: 'Xie' },
+    ]
+  };
+
   startGame() {
-    // this.handGestures.nativeElement.style.display = 'block';
+    this.isEntered = true;
   }
 }
