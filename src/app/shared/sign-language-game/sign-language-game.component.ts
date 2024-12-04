@@ -39,6 +39,7 @@ export class SignLanguageGameComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.handGesturesComponent?.handpose$?.pipe(
+      throttleTime(1000),
       map(hands => hands.map(hand => hand.handpose)),
     ).pipe(distinctUntilChanged()).subscribe((hands) => {
 

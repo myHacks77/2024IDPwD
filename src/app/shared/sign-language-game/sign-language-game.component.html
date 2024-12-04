@@ -1,7 +1,18 @@
 <app-hand-gestures [width]="640"></app-hand-gestures>
 
+<div class="progress-container" *ngIf="!isWon">
+  <div class="progress-bar">
+    <div class="progress-fill" [style.width.%]="(progress / gameSetting.requiredGestures.length) * 100">
+      <span class="progress-text">{{ progress }} / {{ gameSetting.requiredGestures.length }}</span>
+    </div>
+  </div>
+  <div class="current-gesture" *ngIf="gameSetting.requiredGestures[progress]">
+    Make the "{{ gameSetting.requiredGestures[progress].word }}" gesture
+  </div>
+</div>
+
 <div class="glass fixed-in-center won-container" *ngIf="isWon">
-    <h2>Congratulations</h2>
-    <p>You have won!</p>
-     <button (click)="nextLevel()">Next</button>
+    <h1>Congratulations</h1>
+    <p>You have completed "{{ gameSetting.levelTitle }}!"</p>
+    <button (click)="nextLevel()">Next</button>
 </div>
