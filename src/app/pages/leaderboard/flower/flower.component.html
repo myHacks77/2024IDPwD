@@ -1,4 +1,5 @@
-<div class="flower-container" [title]="name">
+<div class="flower-container">
+  <div class="name-tooltip">{{ name }}</div>
   <div class="flower" [ngStyle]="{
     'transform': 'scale(' + flowerScale + ')'
   }">
