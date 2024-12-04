@@ -18,10 +18,10 @@ export class ThankYouComponent {
     levelTitle: 'Thank You',
     nextStepLink: '/did-you-eat',
     requiredGestures: [
-      { gestures: [PredefinedHandposes.ThumbUp], word: 'Xie' },
-      { gestures: [PredefinedHandposes.HalfThumbUp], word: 'Xie' },
-      { gestures: [PredefinedHandposes.ThumbUp], word: 'Xie' },
-      { gestures: [PredefinedHandposes.HalfThumbUp], word: 'Xie' },
+      { gestures: [PredefinedHandposes.ThumbUp], word: '谢(Thank you) - Part 1' },
+      { gestures: [PredefinedHandposes.HalfThumbUp], word: '谢(Thank you) - Part 2' },
+      { gestures: [PredefinedHandposes.ThumbUp], word: '谢(Thank you) - Part 1' },
+      { gestures: [PredefinedHandposes.HalfThumbUp], word: '谢(Thank you) - Part 2' },
     ]
   };
 

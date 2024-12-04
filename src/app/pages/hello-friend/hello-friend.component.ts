@@ -18,8 +18,8 @@ export class HelloFriendComponent {
     levelTitle: 'Hello Friend',
     nextStepLink: '/thank-you',
     requiredGestures: [
-      { gestures: [PredefinedHandposes.PointToOther], word: 'Ni' },
-      { gestures: [PredefinedHandposes.ThumbUp], word: 'Hao' },
+      { gestures: [PredefinedHandposes.PointToOther], word: '你(You)' },
+      { gestures: [PredefinedHandposes.ThumbUp], word: '好(Good)' },
     ]
   };
 

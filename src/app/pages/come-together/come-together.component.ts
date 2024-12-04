@@ -16,14 +16,14 @@ export class ComeTogetherComponent {
 
   isEntered = false;
   gameSetting: GameSetting = {
-    levelTitle: 'Come Together',
+    levelTitle: 'Did you eat?',
     nextStepLink: '/leaderboard',
     requiredGestures: [
-      { gestures: [PredefinedHandposes.PointToOther], word: 'Ni' },
-      { gestures: [PredefinedHandposes.TwoFingers], word: 'Chi' },
-      { gestures: [PredefinedHandposes.TwoFingers], word: 'Fan' },
-      { gestures: [PredefinedHandposes.PointDiagonalDown], word: 'le' },
-      { gestures: [PredefinedHandposes.PointDiagonalDown], word: 'ma' } 
+      { gestures: [PredefinedHandposes.PointToOther], word: '你(You)' },
+      { gestures: [PredefinedHandposes.TwoFingers], word: '吃(Eat)饭(Food) - I' },
+      { gestures: [PredefinedHandposes.TwoFingers], word: '吃(Eat)饭(Food)-II' },
+      { gestures: [PredefinedHandposes.PointDiagonalDown], word: '了吗(Did?) - I' },
+      { gestures: [PredefinedHandposes.PointDiagonalDown], word: '了吗(Did?) - II' } 
     ]
   };
 
