@@ -20,11 +20,11 @@ export class LeaderboardComponent implements OnInit {
   names = ['Amory', 'Jenny', 'John', 'Jane', 'Tom', 'Jerry', 'Amy', 'Lily', 'Lucy', 'Lily', 'Lucy', 'Lily', 'Lucy'];
   
   ngOnInit() {
-    // 为每个名字生成随机位置
+    // 为每个名字生成随机位置，调整范围避免靠近边缘
     this.flowers = this.names.map(name => ({
       name,
-      x: Math.random() * 80, // 0-80%，留出边距
-      y: Math.random() * 80
+      x: 3 + Math.random() * 90, // 15-85%，确保离边缘有足够距离
+      y: 3 + Math.random() * 90  // 15-85%
     }));
   }
 }

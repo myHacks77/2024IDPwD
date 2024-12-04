@@ -3,7 +3,7 @@
   height: 90vh;
   min-height: 600px;
   position: relative;
-  overflow: hidden;
+  padding: 50px;
 }
 
 .flower-field {
@@ -14,10 +14,10 @@
 
 .flower-wrapper {
   position: absolute;
-  transform: translate(-50%, -50%); // 居中定位
+  transform: translate(-50%, -50%);
   transition: all 0.3s ease;
   
   &:hover {
-    z-index: 10; // 确保悬停的花在最上层
+    z-index: 100;
   }
 }
