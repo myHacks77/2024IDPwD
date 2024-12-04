@@ -19,9 +19,9 @@ export class ThankYouComponent {
     nextStepLink: '/come-together',
     requiredGestures: [
       { gestures: [PredefinedHandposes.ThumbUp], word: 'Xie' },
+      { gestures: [PredefinedHandposes.HalfThumbUp], word: 'Xie' },
       { gestures: [PredefinedHandposes.ThumbUp], word: 'Xie' },
-      { gestures: [PredefinedHandposes.ThumbUp], word: 'Xie' },
-      { gestures: [PredefinedHandposes.ThumbUp], word: 'Xie' },
+      { gestures: [PredefinedHandposes.HalfThumbUp], word: 'Xie' },
     ]
   };
 
