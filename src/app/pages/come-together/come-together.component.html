@@ -1,10 +1,10 @@
 
-<div class="glass-container">
+<div class="glass-container"  *ngIf="!isEntered">
     <h1>"Come Together"</h1>
     <p>This level conveys positive energy and the willingness to move forward together, showing support and encouragement for the deaf community.</p>
     <button (click)="startGame()">Start</button>
 </div>
 
-<div class="glass-container" style="display: none;">
-    <app-hand-gestures [width]="900"></app-hand-gestures>
+<div class="game-container" [class.hide]="!isEntered">
+    <app-sign-language-game [gameSetting]="gameSetting"></app-sign-language-game>
 </div>
