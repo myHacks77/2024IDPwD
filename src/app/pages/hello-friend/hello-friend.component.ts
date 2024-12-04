@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SignLanguageGameComponent } from '../../shared/sign-language-game/sign-language-game.component';
+import { GameSetting, SignLanguageGameComponent } from '../../shared/sign-language-game/sign-language-game.component';
+import { PredefinedHandposes } from '../../shared/hand-gestures/handpose.types';
 
 @Component({
   selector: 'app-hello-friend',
@@ -13,6 +14,14 @@ import { SignLanguageGameComponent } from '../../shared/sign-language-game/sign-
 })
 export class HelloFriendComponent {
   isEntered = false;
+  gameSetting: GameSetting = {
+    levelTitle: 'Hello Friend',
+    nextStepLink: '/thank-you',
+    requiredGestures: [
+      { gestures: [PredefinedHandposes.PointToOther], word: 'Ni' },
+      { gestures: [PredefinedHandposes.ThumbUp], word: 'Hao' },
+    ]
+  };
 
   startGame() {
     this.isEntered = true;
