@@ -1,0 +1,24 @@
+<div class="flower-container" [title]="name">
+  <div class="flower" [ngStyle]="{
+    'transform': 'scale(' + flowerScale + ')'
+  }">
+    <div class="petal" [ngStyle]="{
+      'transform': 'translateY(5px) scale(' + petalScale + ')'
+    }">
+      <div class="petal-right"></div>
+      <div class="petal-center"></div>
+      <div class="petal-left"></div>
+    </div>
+    <div class="stem" [ngStyle]="{
+      'height.px': stemHeight,
+      'bottom.px': -stemHeight
+    }"></div>
+    <div class="leaf" *ngIf="leafCount === 0 || leafCount === 2" [ngStyle]="{
+      'bottom.px': leafPosition,
+      'transform': 'translateX(-100%) rotate(' + leafRotation + 'deg)'
+    }"></div>
+    <div class="leaf leaf-second" *ngIf="leafCount === 1 || leafCount === 2" [ngStyle]="{
+      'bottom.px': leafPositionRight
+    }"></div>
+  </div>
+</div> 

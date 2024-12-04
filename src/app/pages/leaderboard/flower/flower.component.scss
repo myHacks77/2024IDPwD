@@ -1,0 +1,109 @@
+.flower-container {
+  display: inline-block;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.flower {
+  position: relative;
+  transform-origin: bottom center;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    animation: sway 2s ease-in-out infinite;
+  }
+}
+
+.petal {
+  width: 30px;
+  height: 45px;
+  background-color: #9154b1;
+  border-radius: 50% 50% 45% 45%;
+  position: relative;
+  transform: translateY(5px);
+  box-shadow: none;
+}
+
+.petal-left {
+  position: absolute;
+  top: 0;
+  left: -12px;
+  width: 30px;
+  height: 45px;
+  background-color: #9154b1;
+  border-radius: 50% 50% 45% 45%;
+  transform: rotate(-15deg);
+  z-index: 1;
+}
+
+.petal-right {
+  position: absolute;
+  top: 0;
+  right: -12px;
+  width: 30px;
+  height: 45px;
+  background-color: #9154b1;
+  border-radius: 50% 50% 45% 45%;
+  transform: rotate(15deg);
+  z-index: 1;
+}
+
+.petal-center {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 30px;
+  height: 45px;
+  background-color: #9154b1;
+  border-radius: 50% 50% 45% 45%;
+  z-index: 2;
+}
+
+.stem {
+  width: 3px;
+  height: 60px;
+  background-color: #4a7c59;
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: height 0.3s ease;
+}
+
+.leaf {
+  width: 30px;
+  height: 15px;
+  background-color: #4a7c59;
+  position: absolute;
+  left: 50%;
+  border-radius: 50% 50% 50% 50%;
+  transform-origin: center left;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    background-color: #4a7c59;
+    border-radius: 50% 50% 50% 50%;
+    transform: rotate(-10deg);
+    transform-origin: right center;
+  }
+}
+
+.leaf-second {
+  z-index: -1;
+  transform-origin: center right;
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+} 
