@@ -1,6 +1,6 @@
 <app-hand-gestures [width]="640"></app-hand-gestures>
 
-<div class="glass-container fixed-in-center" *ngIf="isWon">
+<div class="glass fixed-in-center won-container" *ngIf="isWon">
     <h2>Congratulations</h2>
     <p>You have won!</p>
      <button (click)="nextLevel()">Next</button>

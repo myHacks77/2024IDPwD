@@ -2,7 +2,7 @@ import { Component, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges } 
 import { HandGesturesComponent } from '../hand-gestures/hand-gestures.component';
 import { CommonModule } from '@angular/common';
 import { PredefinedHandposes } from '../hand-gestures/handpose.types';
-import { throttleTime } from 'rxjs/operators';
+import { distinctUntilChanged, map, throttleTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 
@@ -43,14 +43,14 @@ export class SignLanguageGameComponent implements AfterViewInit, OnChanges {
 
   ngAfterViewInit(): void {
     this.handGesturesComponent?.handpose$?.pipe(
-      throttleTime(1000)
-    ).subscribe((hands) => {
+      map(hands => hands.map(hand => hand.handpose)),
+    ).pipe(distinctUntilChanged()).subscribe((hands) => {
 
       if(!this.gameSetting.requiredGestures.length)return;
       if(this.isWon)return;
       
       const targetGesture = this.gameSetting.requiredGestures[this.progress];
-      if (hands.some(hand => targetGesture.gestures.includes(hand.handpose))) {
+      if (hands.some(hand => targetGesture.gestures.includes(hand))) {
         this.progress++;
         console.log(this.progress);
       }
