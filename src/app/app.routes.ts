@@ -10,7 +10,7 @@ export const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'hello-friend', component: HelloFriendComponent },
   { path: 'thank-you', component: ThankYouComponent },
-  { path: 'come-together', component: ComeTogetherComponent },
+  { path: 'did-you-eat', component: ComeTogetherComponent },
   { path: 'leaderboard', component: LeaderboardComponent },
 //   { path: '**', redirectTo: 'welcome' }
 ];

@@ -16,7 +16,7 @@ export class ThankYouComponent {
   isEntered = false;
   gameSetting: GameSetting = {
     levelTitle: 'Thank You',
-    nextStepLink: '/come-together',
+    nextStepLink: '/did-you-eat',
     requiredGestures: [
       { gestures: [PredefinedHandposes.ThumbUp], word: 'Xie' },
       { gestures: [PredefinedHandposes.HalfThumbUp], word: 'Xie' },
