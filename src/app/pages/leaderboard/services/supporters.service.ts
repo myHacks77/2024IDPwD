@@ -7,11 +7,16 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class SupportersService {
   private readonly STORAGE_KEY = 'app_supporters';
+  private readonly USER_KEY = 'current_user';
   private supportersSubject: BehaviorSubject<Supporter[]>;
+  private currentUserSubject: BehaviorSubject<string | null>;
   
   constructor() {
     const storedSupporters = this.loadFromStorage();
     this.supportersSubject = new BehaviorSubject<Supporter[]>(storedSupporters);
+    
+    const storedUser = localStorage.getItem(this.USER_KEY);
+    this.currentUserSubject = new BehaviorSubject<string | null>(storedUser);
   }
 
   get supporters$(): Observable<Supporter[]> {
@@ -22,23 +27,29 @@ export class SupportersService {
     return this.supportersSubject.value;
   }
 
-  addSupporter(name: string) {
-    const newSupporter: Supporter = {
-      name,
-      joinDate: new Date(),
-      position: {
-        x: 3 + Math.random() * 90, // 3-93%
-        y: 3 + Math.random() * 90  // 3-93%
-      }
-    };
+  get currentUser$(): Observable<string | null> {
+    return this.currentUserSubject.asObservable();
+  }
 
+  get currentUser(): string | null {
+    return this.currentUserSubject.value;
+  }
+
+  setUser(name: string) {
+    localStorage.setItem(this.USER_KEY, name);
+    this.currentUserSubject.next(name);
+  }
+
+  clearUser() {
+    localStorage.removeItem(this.USER_KEY);
+    this.currentUserSubject.next(null);
+  }
+
+  addSupporter(newSupporter: Supporter) {
     const currentSupporters = this.currentSupporters;
-    // 检查是否已存在
-    if (!currentSupporters.find(s => s.name === name)) {
-      const updatedSupporters = [...currentSupporters, newSupporter];
+    const updatedSupporters = [...currentSupporters, newSupporter];
       this.supportersSubject.next(updatedSupporters);
       this.saveToStorage(updatedSupporters);
-    }
   }
 
   private loadFromStorage(): Supporter[] {
@@ -48,6 +59,7 @@ export class SupportersService {
         return [];
       }
       const supporters = JSON.parse(stored);
+      console.log(supporters);
       return supporters.map((s: any) => ({
         ...s,
         joinDate: new Date(s.joinDate)
