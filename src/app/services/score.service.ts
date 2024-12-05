@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ScoreService {
-  private userName: string | undefined;
+  private userName!: string;
 
   constructor() { }
 
@@ -13,7 +13,8 @@ export class ScoreService {
     // localStorage.setItem('user', name);
   }
 
-  getUser() {
+  getUser():string {
+    return this.userName;
     // return localStorage.getItem('user');
   }
 } 

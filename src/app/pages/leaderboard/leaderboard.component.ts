@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FlowerComponent } from './flower/flower.component';
 import { CommonModule } from '@angular/common';
 
-interface FlowerPosition {
-  name: string;
-  x: number;
-  y: number;
-}
+import { SupportersService } from './services/supporters.service';
+import { ScoreService } from '../../services/score.service';
+import { Supporter } from './data/supporters';
 
 @Component({
   selector: 'app-leaderboard',
@@ -16,15 +14,19 @@ interface FlowerPosition {
   styleUrls: ['./leaderboard.component.scss']
 })
 export class LeaderboardComponent implements OnInit {
-  flowers: FlowerPosition[] = [];
-  names = ['Amory', 'Jenny', 'John', 'Jane', 'Tom', 'Jerry', 'Amy', 'Lily', 'Lucy', 'Lily', 'Lucy', 'Lily', 'Lucy'];
+  flowers: Supporter[] = [];
   
+  constructor(
+    private supportersService: SupportersService, 
+    private scoreService: ScoreService
+  ) {}
+
   ngOnInit() {
-    // 为每个名字生成随机位置，调整范围避免靠近边缘
-    this.flowers = this.names.map(name => ({
-      name,
-      x: 3 + Math.random() * 90, // 15-85%，确保离边缘有足够距离
-      y: 3 + Math.random() * 90  // 15-85%
-    }));
+    this.flowers = this.supportersService.currentSupporters;
+    this.addSupporter(this.scoreService.getUser());
+  }
+
+  addSupporter(name: string) {
+    this.supportersService.addSupporter(name);
   }
 }

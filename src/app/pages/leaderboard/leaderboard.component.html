@@ -3,8 +3,8 @@
     <div *ngFor="let flower of flowers" 
          class="flower-wrapper"
          [ngStyle]="{
-           'left': flower.x + '%',
-           'top': flower.y + '%'
+           'left': flower.position.x + '%',
+           'top': flower.position.y + '%'
          }">
       <app-flower [name]="flower.name"></app-flower>
     </div>
