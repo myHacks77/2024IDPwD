@@ -31,9 +31,16 @@ export class LeaderboardComponent implements OnInit {
       position: {
         x: 3 + Math.random() * 90,
         y: 3 + Math.random() * 90
-      }
+      },
+      isNew: true
     };
     this.flowers.push(newSupporter);
-    this.supportersService.addSupporter(newSupporter);
+   
+    // 延长动画时间到3秒
+    setTimeout(() => {
+      newSupporter.isNew = false;
+      this.supportersService.addSupporter(newSupporter);
+      this.supportersService.clearUser();
+    }, 3000);
   }
 }

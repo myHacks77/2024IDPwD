@@ -17,7 +17,53 @@
   transform: translate(-50%, -50%);
   transition: all 0.3s ease;
   
+  &.growing {
+    animation: growFlower 3s ease-out;
+  }
+
   &:hover {
     z-index: 100;
+  }
+}
+
+@keyframes growFlower {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  30% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0.3;
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.7;
+  }
+  85% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+// 可以添加茎的生长动画
+@keyframes growStem {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
+
+// 可以添加叶子的展开动画
+@keyframes unfoldLeaves {
+  from {
+    transform: scale(0) rotate(0deg);
+  }
+  to {
+    transform: scale(1) rotate(-20deg);
   }
 }

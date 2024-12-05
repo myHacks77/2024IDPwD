@@ -5,4 +5,5 @@ export interface Supporter {
     x: number;
     y: number;
   };
+  isNew?: boolean;
 }
