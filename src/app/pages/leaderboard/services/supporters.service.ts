@@ -67,7 +67,7 @@ export class SupportersService {
         return [];
       }
       const supporters = JSON.parse(stored);
-      console.log(supporters);
+
       return supporters.map((s: any) => ({
         ...s,
         joinDate: new Date(s.joinDate)

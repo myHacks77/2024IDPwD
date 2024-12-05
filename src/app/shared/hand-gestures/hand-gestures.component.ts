@@ -232,7 +232,7 @@ export class HandGesturesComponent implements OnInit, AfterViewInit, OnDestroy, 
     if (gesture.gestures?.length) {
       const mostPossibleGesture = _maxBy(gesture.gestures, (gesture) => gesture?.score);
 
-      console.log('Gesture detected', mostPossibleGesture?.name, mostPossibleGesture?.score);
+      // console.log('Gesture detected', mostPossibleGesture?.name, mostPossibleGesture?.score);
 
       return mostPossibleGesture?.name as PredefinedHandposes;
     }

@@ -40,9 +40,10 @@ export class SignLanguageGameComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.handGesturesComponent?.handpose$?.pipe(
       throttleTime(1000),
+      distinctUntilChanged(),
       map(hands => hands.map(hand => hand.handpose)),
-    ).pipe(distinctUntilChanged()).subscribe((hands) => {
-
+    ).subscribe((hands) => {
+      console.log(hands);
       if(!this.gameSetting.requiredGestures.length)return;
       if(this.isWon)return;
       
