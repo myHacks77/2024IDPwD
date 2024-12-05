@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PredefinedHandposes } from '../hand-gestures/handpose.types';
 import { distinctUntilChanged, map, throttleTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { SupportersService } from '../../pages/leaderboard/services/supporters.service';
 
 
 export interface GameSetting {
@@ -32,10 +33,9 @@ export class SignLanguageGameComponent implements AfterViewInit {
   @ViewChild(HandGesturesComponent) handGesturesComponent!: HandGesturesComponent;
   @Input() gameSetting!: GameSetting;
   progress: number = 0;
-  isWon: boolean = false;
-  // TODO: timer
+  isWon: boolean = false
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private supportersService: SupportersService  ) {}
 
   ngAfterViewInit(): void {
     this.handGesturesComponent?.handpose$?.pipe(
@@ -60,6 +60,7 @@ export class SignLanguageGameComponent implements AfterViewInit {
 
   nextLevel(): void {
     if (!this.gameSetting.nextStepLink) return;
+    this.supportersService.completeCurrentStep();
     this.router.navigate([this.gameSetting.nextStepLink]);
   }
 

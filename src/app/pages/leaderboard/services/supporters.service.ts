@@ -9,8 +9,8 @@ export class SupportersService {
   private readonly STORAGE_KEY = 'app_supporters';
   private user: string | null = null;
   private supportersSubject: BehaviorSubject<Supporter[]>;
+  private step: number = 0;  // 0: welcome, 1: hello-friend, 2: thank-you, 3: leaderboard
 
-  
   constructor() {
     const storedSupporters = this.loadFromStorage();
     this.supportersSubject = new BehaviorSubject<Supporter[]>(storedSupporters);
@@ -28,12 +28,29 @@ export class SupportersService {
     return this.user;
   }
 
+  get currentStep(): number {
+    return this.step;
+  }
+
   setUser(name: string) {
     this.user = name;
   }
 
   clearUser() {
     this.user = null;
+  }
+
+  setStep(step: number) {
+    this.step = step;
+  }
+
+  completeCurrentStep() {
+    this.step++;
+  }
+
+  resetProgress() {
+    this.step = 0;
+    this.clearUser();
   }
 
   addSupporter(newSupporter: Supporter) {
