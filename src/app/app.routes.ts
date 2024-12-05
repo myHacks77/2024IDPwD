@@ -23,11 +23,18 @@ export const routes: Routes = [
     data: { requiredStep: 2 }
   },
   {
+    path: 'did-you-eat',
+    loadComponent: () => import('./pages/come-together/come-together.component')
+      .then(c => c.ComeTogetherComponent),
+    canActivate: [AuthGuard, ProgressGuard],
+    data: { requiredStep: 3 }
+  },
+  {
     path: 'leaderboard',
     loadComponent: () => import('./pages/leaderboard/leaderboard.component')
       .then(c => c.LeaderboardComponent),
     canActivate: [AuthGuard, ProgressGuard],
-    data: { requiredStep: 3 }
+    data: { requiredStep: 4 }
   },
   {
     path: '',
