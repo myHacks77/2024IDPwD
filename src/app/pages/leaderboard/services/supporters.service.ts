@@ -7,16 +7,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class SupportersService {
   private readonly STORAGE_KEY = 'app_supporters';
-  private readonly USER_KEY = 'current_user';
+  private user: string | null = null;
   private supportersSubject: BehaviorSubject<Supporter[]>;
-  private currentUserSubject: BehaviorSubject<string | null>;
+
   
   constructor() {
     const storedSupporters = this.loadFromStorage();
     this.supportersSubject = new BehaviorSubject<Supporter[]>(storedSupporters);
-    
-    const storedUser = localStorage.getItem(this.USER_KEY);
-    this.currentUserSubject = new BehaviorSubject<string | null>(storedUser);
   }
 
   get supporters$(): Observable<Supporter[]> {
@@ -27,29 +24,23 @@ export class SupportersService {
     return this.supportersSubject.value;
   }
 
-  get currentUser$(): Observable<string | null> {
-    return this.currentUserSubject.asObservable();
-  }
-
   get currentUser(): string | null {
-    return this.currentUserSubject.value;
+    return this.user;
   }
 
   setUser(name: string) {
-    localStorage.setItem(this.USER_KEY, name);
-    this.currentUserSubject.next(name);
+    this.user = name;
   }
 
   clearUser() {
-    localStorage.removeItem(this.USER_KEY);
-    this.currentUserSubject.next(null);
+    this.user = null;
   }
 
   addSupporter(newSupporter: Supporter) {
     const currentSupporters = this.currentSupporters;
     const updatedSupporters = [...currentSupporters, newSupporter];
-      this.supportersSubject.next(updatedSupporters);
-      this.saveToStorage(updatedSupporters);
+    this.supportersSubject.next(updatedSupporters);
+    this.saveToStorage(updatedSupporters);
   }
 
   private loadFromStorage(): Supporter[] {
@@ -77,4 +68,4 @@ export class SupportersService {
       console.error('Error saving supporters:', error);
     }
   }
-} 
+}
