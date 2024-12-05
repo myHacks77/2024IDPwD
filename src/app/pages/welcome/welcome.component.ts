@@ -26,6 +26,7 @@ export class WelcomeComponent {
       return;
     }
     this.supportersService.setUser(this.name);
+    this.supportersService.completeCurrentStep();
     this.router.navigate(['/hello-friend']);
   }
 }
