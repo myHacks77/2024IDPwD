@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Supporter } from '../data/supporters';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -11,7 +12,7 @@ export class SupportersService {
   private supportersSubject: BehaviorSubject<Supporter[]>;
   private step: number = 0;  // 0: welcome, 1: hello-friend, 2: thank-you, 3: leaderboard
 
-  constructor() {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     const storedSupporters = this.loadFromStorage();
     this.supportersSubject = new BehaviorSubject<Supporter[]>(storedSupporters);
   }
@@ -61,6 +62,10 @@ export class SupportersService {
   }
 
   private loadFromStorage(): Supporter[] {
+    if (!isPlatformBrowser(this.platformId)) {
+      return [];
+    }
+
     try {
       const stored = localStorage.getItem(this.STORAGE_KEY);
       if (!stored) {
@@ -79,6 +84,10 @@ export class SupportersService {
   }
 
   private saveToStorage(supporters: Supporter[]) {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     try {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(supporters));
     } catch (error) {
