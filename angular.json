@@ -108,7 +108,12 @@
           "options": {
             "baseHref": "/2024IDPwD/",
             "name": "GoldenFingerMY",
-            "email": "seahan0709@icloud.coms"
+            "email": "seahan0709@icloud.com",
+            "repo": "https://github.com/myHacks77/2024IDPwD.git",
+            "branch": "gh-pages",
+            "noBuild": false,
+            "noSilent": true,
+            "cname": null
           }
         }
       }
